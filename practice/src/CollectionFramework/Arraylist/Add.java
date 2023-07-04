@@ -1,7 +1,6 @@
 package CollectionFramework.Arraylist;
 
 import java.util.ArrayList;
-
 public class Add {
     public static void main(String[] args) {
         ArrayList<Integer> al1= new ArrayList<>();

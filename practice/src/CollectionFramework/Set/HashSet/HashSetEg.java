@@ -2,12 +2,13 @@ package CollectionFramework.Set.HashSet;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 public class HashSetEg {
     public static void main(String[] args) {
         String s = new String("1");
 //        HashSet<Object> names= new HashSet<>();
-        HashSet<Object> names= new HashSet<>();
+        Set<Object> names= new HashSet<>();
         names.add("ronin");
         names.add("batman");
         names.add("robin");

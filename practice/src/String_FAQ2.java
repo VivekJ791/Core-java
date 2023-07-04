@@ -38,5 +38,7 @@ public class String_FAQ2 {
 //            break;
 //            default: System.out.println("invalid");
 //        } System.out.println(sop);
+        String string= new String("Hello World");
+        System.out.println(string.substring(0, 4));
     }
 }

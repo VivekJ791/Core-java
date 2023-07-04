@@ -16,8 +16,7 @@ public class Book {
     }
     public static void main(String[] args) {
         HashSet<Book> h1= new HashSet<Book>();
-        Book b= new Book("Hunger games","suzaaneCollins","kodansa",100000);
-
+        Book b= new Book("Hunger games","suzaneCollins","kodansa",100000);
         h1.add(b);
         System.out.println(h1);
         for (Book b1:h1
