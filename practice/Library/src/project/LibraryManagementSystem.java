@@ -154,6 +154,7 @@ public class LibraryManagementSystem {
             }
         } else {
             System.out.println("Invalid credentials!");
+            System.exit(0);
         }
     }
 
@@ -188,6 +189,7 @@ public class LibraryManagementSystem {
     }
 
     static void customerManager() {
+        while (true) {
             System.out.println("1. Display customers");
             System.out.println("2. Update customer");
             System.out.println("3. Delete customer");
@@ -207,25 +209,53 @@ public class LibraryManagementSystem {
                     deleteCustomer();
                     break;
                 case 4:
-                   return;
+                    return;
 
 
                 default:
                     System.out.println("Invalid choice!");
             }
         }
+    }
 
     static void addBook() {
+        boolean bookExists = false;
         System.out.println("Enter book ID:");
         int id = scanner.nextInt();
-        System.out.println("Enter book name:");
-        String name = scanner.next();
-        System.out.println("Enter book price:");
-        float price = scanner.nextFloat();
-
-        books.add(new Book(id, name, price));
-        System.out.println("Book added successfully!");
+        for( Book book: books){
+            if(book.getbookId()==id){
+                System.out.println("Sorry book for this id exists ");
+                bookExists=true;
+                break;
+            }
+        }
+        if(!bookExists) {
+            System.out.println("Enter book name:");
+            scanner.nextLine();
+            String name = scanner.nextLine();
+            System.out.println("Enter book price:");
+            float price = scanner.nextFloat();
+            books.add(new Book(id, name, price));
+            System.out.println("Book added successfully!");
+        }
     }
+//        static void addBook() {
+//        System.out.println("Enter book ID:");
+//        int id = scanner.nextInt();
+//        for( Book book: books){
+//            if(book.getbookId()!=id){
+//                System.out.println("Enter book name:");
+//                scanner.nextLine();
+//                String name = scanner.nextLine();
+//                System.out.println("Enter book price:");
+//                float price = scanner.nextFloat();
+//                books.add(new Book(id, name, price));
+//                System.out.println("Book added successfully!");
+//                break;
+//            }
+//        }
+//            System.out.println("id exists");
+//    }
 
     static void displayBooks() {
         System.out.println("List of books:");
@@ -239,11 +269,11 @@ public class LibraryManagementSystem {
     static void updateBook() {
         System.out.println("Enter book ID to update:");
         int id = scanner.nextInt();
-
         for (Book book : books) {
             if (book.getbookId() == id) {
                 System.out.println("Enter new book name:");
-                String name = scanner.next();
+                scanner.nextLine();
+                String name = scanner.nextLine();
                 System.out.println("Enter new book price:");
                 float price = scanner.nextFloat();
 
@@ -253,7 +283,6 @@ public class LibraryManagementSystem {
                 return;
             }
         }
-
         System.out.println("Book not found!");
     }
 
@@ -306,6 +335,12 @@ public class LibraryManagementSystem {
     static void registerCustomer() {
         System.out.println("Enter customer ID:");
         int id = scanner.nextInt();
+        for (Customer customer : customers) {
+            if (customer.getId() == id) {
+                System.out.println("Customer already registered!");
+                return;
+            }
+        }
         System.out.println("Enter first name");
         String name=scanner.next();
         System.out.println("Enter password:");
@@ -313,16 +348,9 @@ public class LibraryManagementSystem {
         System.out.println("Confirm password:");
         String confirmPassword = scanner.next();
 
-        for (Customer customer : customers) {
-            if (customer.getId() == id) {
-                System.out.println("Customer already registered!");
-                return;
-            }
-        }
-
         if (password.equals(confirmPassword)) {
             customers.add(new Customer(id, name, password));
-            System.out.println("Customer registered successfully!");
+            System.out.println("Customer registered successfully! , Now you can login");
         } else {
             System.out.println("Passwords do not match!");
         }
